@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrepBloom • Student Login</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Font for clean modern look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="auth-container">
+    <!-- Brand / Mascot Logo -->
+    <div class="brand-header">
+      <div class="brand-icon"></div>
+      <h1 class="brand-name">SATPREP</h1>
+      <p class="brand-tagline">Smart, adaptive practice </p>
+    </div>
+
+    <!-- Auth Card -->
+    <div class="auth-card">
+
+      <!-- Tab Switcher (Sign Up / Sign In) -->
+      <div class="auth-tabs">
+        <button class="tab-btn active" id="tab-signup" onclick="switchTab('signup')">Create Account</button>
+        <button class="tab-btn" id="tab-signin" onclick="switchTab('signin')">Sign In</button>
+      </div>
+
+      <!-- Quick Social Buttons (inspired by your OnePrep screenshot) -->
+      <div class="social-grid">
+        <button class="social-btn" type="button">
+          <span class="social-icon">🇬</span> Google
+        </button>
+        <button class="social-btn" type="button">
+          <span class="social-icon"></span> Apple
+        </button>
+      </div>
+
+      <div class="divider">
+        <span>or continue with email</span>
+      </div>
+
+      <!-- SIGN UP FORM -->
+      <form id="signup-form" class="auth-form" onsubmit="handleAuth(event)">
+        <div class="form-row">
+          <div class="input-group">
+            <label for="first-name">First name</label>
+            <input type="text" id="first-name" placeholder="Jane" required>
+          </div>
+          <div class="input-group">
+            <label for="last-name">Last name</label>
+            <input type="text" id="last-name" placeholder="Doe" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="signup-email">Email address</label>
+          <input type="email" id="signup-email" placeholder="student@example.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" placeholder="Create a strong password" required>
+        </div>
+
+        <div class="input-group">
+          <label for="sat-goal">Target SAT Score </label>
+          <select id="sat-goal">
+            <option value="1500+">1500+ </option>
+            <option value="1400-1490" selected>1400 – 1490</option>
+            <option value="1300-1390">1300 – 1390</option>
+            <option value="1200-1290">1200 – 1290</option>
+            <option value="1100+">1100+</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Create Free Account </button>
+      </form>
+
+      <!-- SIGN IN FORM (hidden by default) -->
+      <form id="signin-form" class="auth-form hidden" onsubmit="handleAuth(event)">
+        <div class="input-group">
+          <label for="signin-email">Email address</label>
+          <input type="email" id="signin-email" placeholder="student@example.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="signin-password">Password</label>
+          <input type="password" id="signin-password" placeholder="Enter your password" required>
+        </div>
+
+        <div class="forgot-pass">
+          <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="submit-btn">Welcome Back • Sign In </button>
+      </form>
+
+      <!-- Bottom Switch Prompt -->
+      <p class="auth-footer" id="footer-text">
+        Already have an account? <a href="#" onclick="switchTab('signin'); return false;">Sign in</a>
+      </p>
+
+    </div>
+  </div>
+
+  <script>
+    function switchTab(type) {
+      const signupForm = document.getElementById('signup-form');
+      const signinForm = document.getElementById('signin-form');
+      const tabSignup = document.getElementById('tab-signup');
+      const tabSignin = document.getElementById('tab-signin');
+      const footerText = document.getElementById('footer-text');
+
+      if (type === 'signin') {
+        signupForm.classList.add('hidden');
+        signinForm.classList.remove('hidden');
+        tabSignup.classList.remove('active');
+        tabSignin.classList.add('active');
+        footerText.innerHTML = "Don't have an account? <a href='#' onclick=\"switchTab('signup'); return false;\">Create one</a>";
+      } else {
+        signinForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+        tabSignin.classList.remove('active');
+        tabSignup.classList.add('active');
+        footerText.innerHTML = "Already have an account? <a href='#' onclick=\"switchTab('signin'); return false;\">Sign in</a>";
+      }
+    }
+
+    function handleAuth(e) {
+      e.preventDefault();
+      alert("Account verified! Next, we'll take you to the SAT Practice Portal ");
+    }
+  </script>
+</body>
+</html>

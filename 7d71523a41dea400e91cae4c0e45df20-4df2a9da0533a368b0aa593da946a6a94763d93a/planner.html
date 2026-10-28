@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRAE• Study Planner</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="practice.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .nav-links { display: flex; gap: 20px; }
+    .nav-link { color: #64748b; text-decoration: none; font-weight: 600; font-size: 0.95rem; padding: 6px 12px; border-radius: 8px; }
+    .nav-link.active { color: #e11d48; background: #fff1f2; }
+
+    .calendar-card { background: white; border-radius: 24px; padding: 28px; border: 1.5px solid #fecdd3; box-shadow: 0 10px 30px rgba(244, 63, 94, 0.05); }
+    .calendar-grid { display: grid; grid-template-columns: 80px repeat(4, 1fr); border: 1px solid #ffe4e6; border-radius: 16px; overflow: hidden; }
+    .cal-header { background: #fff1f2; padding: 14px; text-align: center; font-weight: 700; color: #881317; border-bottom: 1px solid #fecdd3; border-right: 1px solid #fecdd3; }
+    .cal-time { padding: 16px 12px; font-size: 0.8rem; font-weight: 600; color: #94a3b8; border-bottom: 1px solid #ffe4e6; border-right: 1px solid #ffe4e6; background: #fffcfd; text-align: center; }
+    .cal-cell { padding: 8px; border-bottom: 1px solid #ffe4e6; border-right: 1px solid #ffe4e6; min-height: 80px; }
+
+    /* Study Task Blocks (inspired by Image 4) */
+    .task-block { border-radius: 10px; padding: 10px 12px; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+    .task-math { background: #ffe4e6; color: #9f1239; border-left: 4px solid #f43f5e; }
+    .task-reading { background: #fdf2f8; color: #86198f; border-left: 4px solid #d946ef; }
+    .task-time { font-size: 0.75rem; opacity: 0.8; margin-top: 4px; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <!-- Shared Top App Bar -->
+  <header class="app-header">
+    <div class="header-left">
+      <span class="brand-badge">PRAE</span>
+      <nav class="nav-links">
+        <a href="practice.html" class="nav-link">Practice</a>
+        <a href="planner.html" class="nav-link active">Study Planner</a>
+        <a href="analytics.html" class="nav-link"> Analytics</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <a href="login.html" class="exit-btn">Sign Out</a>
+    </div>
+  </header>
+
+  <!-- Planner Content -->
+  <main class="practice-container" style="max-width: 960px;">
+
+    <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end;">
+      <div>
+        <h1 style="color: #881337; font-size: 1.8rem; font-weight: 800;">Weekly Adaptive Study Schedule </h1>
+        <p style="color: #64748b; font-size: 0.95rem;">Automatically scheduled around your weakest topics.</p>
+      </div>
+      <button style="background: #e11d48; color: white; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 700; cursor: pointer;">+ Add Session</button>
+    </div>
+
+    <div class="calendar-card">
+      <div class="calendar-grid">
+        <!-- Header row -->
+        <div class="cal-header">Time</div>
+        <div class="cal-header">Mon 5</div>
+        <div class="cal-header">Tue 6</div>
+        <div class="cal-header">Wed 7</div>
+        <div class="cal-header">Thu 8</div>
+
+        <!-- 4:00 PM Row -->
+        <div class="cal-time">4:00 PM</div>
+        <div class="cal-cell">
+          <div class="task-block task-math">
+            Linear Equations Practice
+            <div class="task-time">4:00 PM - 5:00 PM • Weakness Drill</div>
+          </div>
+        </div>
+        <div class="cal-cell">
+          <div class="task-block task-math">
+            Advanced Math Practice
+            <div class="task-time">4:00 PM - 5:00 PM</div>
+          </div>
+        </div>
+        <div class="cal-cell">
+          <div class="task-block task-reading">
+            Grammar & Conventions
+            <div class="task-time">4:00 PM - 5:00 PM</div>
+          </div>
+        </div>
+        <div class="cal-cell">
+          <div class="task-block task-reading">
+            Reading & Writing Review
+            <div class="task-time">4:00 PM - 5:00 PM</div>
+          </div>
+        </div>
+
+        <!-- 5:00 PM Row -->
+        <div class="cal-time">5:00 PM</div>
+        <div class="cal-cell">
+          <div class="task-block task-math">
+            Speed Drill (Timed)
+            <div class="task-time">5:10 PM - 6:00 PM</div>
+          </div>
+        </div>
+        <div class="cal-cell">
+          <div class="task-block task-reading">
+            Vocabulary in Context
+            <div class="task-time">5:30 PM - 6:30 PM</div>
+          </div>
+        </div>
+        <div class="cal-cell"></div>
+        <div class="cal-cell">
+          <div class="task-block task-math">
+            Geometry Practice
+            <div class="task-time">5:15 PM - 6:15 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

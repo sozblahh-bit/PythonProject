@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrepBloom • Practice Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="practice.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top App Bar -->
+  <header class="app-header">
+    <div class="header-left">
+      <span class="brand-badge">PRAE</span>
+      <span class="mode-badge">Adaptive SAT Practice</span>
+    </div>
+
+    <div class="header-center">
+      <span class="question-tracker">Question <strong id="q-number">1</strong> of 5</span>
+    </div>
+
+    <div class="header-right">
+      <div class="timer-pill">
+        <span>⏱️</span>
+        <span id="timer-display">00:45</span>
+      </div>
+      <a href="login.html" class="exit-btn">Exit</a>
+    </div>
+  </header>
+
+  <!-- Main Practice Area -->
+  <main class="practice-container">
+
+    <!-- Question Card -->
+    <div class="sat-card">
+
+      <!-- Metadata Tag Bar -->
+      <div class="tag-row">
+        <span class="chip chip-topic" id="topic-tag">Heart of Algebra</span>
+        <span class="chip chip-diff" id="diff-tag">Level 2 • Medium</span>
+      </div>
+
+      <!-- Question Text -->
+      <h2 class="question-prompt" id="question-text">
+        If 3x + 7 = 19, what is the value of 2x - 1?
+      </h2>
+
+      <!-- Options Grid (A, B, C, D) -->
+      <div class="options-container">
+        <button class="choice-btn" onclick="selectChoice(this, 'A')">
+          <span class="choice-letter">A</span>
+          <span class="choice-text">5</span>
+        </button>
+
+        <button class="choice-btn" onclick="selectChoice(this, 'B')">
+          <span class="choice-letter">B</span>
+          <span class="choice-text">7</span>
+        </button>
+
+        <button class="choice-btn" onclick="selectChoice(this, 'C')">
+          <span class="choice-letter">C</span>
+          <span class="choice-text">9</span>
+        </button>
+
+        <button class="choice-btn" onclick="selectChoice(this, 'D')">
+          <span class="choice-letter">D</span>
+          <span class="choice-text">11</span>
+        </button>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <button class="check-btn disabled" id="check-btn" onclick="checkAnswer()">Check Answer ✨</button>
+      </div>
+
+      <!-- Instant Feedback Box (Hidden by default) -->
+      <div class="feedback-card hidden" id="feedback-card">
+        <div class="feedback-header">
+          <span id="feedback-icon">🎉</span>
+          <h3 id="feedback-title">Correct!</h3>
+        </div>
+        <p id="feedback-text">Subtract 7 from both sides: 3x = 12, so x = 4. Then 2(4) - 1 = 7.</p>
+        <button class="next-btn" onclick="nextQuestion()">Next Question </button>
+      </div>
+
+    </div>
+
+    <!-- Student Stats Mini-Bar (from your Inspo Image 5) -->
+    <div class="analytics-preview">
+      <div class="metric-card">
+        <span class="metric-label">Session Accuracy</span>
+        <span class="metric-value" id="metric-acc">100%</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Weakness Priority</span>
+        <span class="metric-value pink-text">High (Focusing on Algebra)</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Avg Time / Question</span>
+        <span class="metric-value">24s</span>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    let selectedOption = null;
+    const correctOption = "B";
+
+    function selectChoice(btn, letter) {
+      // Remove selection from all buttons
+      document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+      // Select clicked button
+      btn.classList.add('selected');
+      selectedOption = letter;
+
+      // Enable the Check Answer button
+      const checkBtn = document.getElementById('check-btn');
+      checkBtn.classList.remove('disabled');
+    }
+
+    function checkAnswer() {
+      if (!selectedOption) return;
+
+      const feedback = document.getElementById('feedback-card');
+      const feedbackTitle = document.getElementById('feedback-title');
+      const feedbackIcon = document.getElementById('feedback-icon');
+      const checkBtn = document.getElementById('check-btn');
+
+      feedback.classList.remove('hidden');
+      checkBtn.style.display = 'none';
+
+      if (selectedOption === correctOption) {
+        feedback.className = 'feedback-card feedback-correct';
+        feedbackIcon.textContent = '🎉';
+        feedbackTitle.textContent = 'Correct!';
+      } else {
+        feedback.className = 'feedback-card feedback-wrong';
+        feedbackIcon.textContent = '💡';
+        feedbackTitle.textContent = 'Not quite! Correct answer is B';
+      }
+    }
+
+    function nextQuestion() {
+      alert("Moving to next adaptive question!");
+      location.reload();
+    }
+  </script>
+</body>
+</html>
